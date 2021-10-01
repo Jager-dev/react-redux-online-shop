@@ -6,7 +6,8 @@ const Home = () => {
     {
       "id": 1,
       "title": "Mushroom - Chanterelle, Dry",
-      "price": "4.32",
+      "price": "4.32$",
+      "total_price": "",
       "description": "Traumatic subcutaneous emphysema, initial encounter",
       "amount": 1,
       "images": "http://dummyimage.com/235x100.png/cc0000/ffffff"
@@ -14,7 +15,8 @@ const Home = () => {
     {
       "id": 2,
       "title": "Soup - Campbells, Creamy",
-      "price": "1.13",
+      "price": "1.13$",
+      "total_price": "",
       "description": "Hemiplegia, unspecified affecting left dominant side",
       "amount": 2,
       "images": "http://dummyimage.com/222x100.png/5fa2dd/ffffff"
@@ -22,7 +24,8 @@ const Home = () => {
     {
       "id": 3,
       "title": "Beer - Maudite",
-      "price": "9.42",
+      "price": "9.42$",
+      "total_price": "",
       "description": "Obstructed labor due to malpos and malpresent, unsp, fetus 2",
       "amount": 3,
       "images": "http://dummyimage.com/173x100.png/ff4444/ffffff"

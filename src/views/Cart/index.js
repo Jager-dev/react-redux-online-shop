@@ -13,6 +13,7 @@ const Cart = () => {
             <th>Название продукта</th>
             <th>Количество</th>
             <th>Цена</th>
+            <th>Сумма</th>
             <th>Удалить</th>
             </thead>
             <tbody>
@@ -26,18 +27,27 @@ const Cart = () => {
                     <button onClick={() => dispatch({type: "ADD_TO_CART", payload: item})}>+</button>
                   </td>
                   <td>{item.price}</td>
+                  <td>{+item.total_price + +item.price}</td>
                   <td>
                     <button onClick={() => dispatch({type: "REMOVE_FROM_CART", payload: item.id})}>x</button>
                   </td>
+                  <td>{(item.price * item.quantity).toFixed(2)}</td>
                 </tr>
               )
             }
             </tbody>
+            <div>
+              {
+                cart.map(el =>
+                <span onChange={() => dispatch({type: "ALL_CARTS_SUM", payload: el})}>{el.sum}</span>
+                )
+              }
+            </div>
           </table> :
-          <h3>Корзтна пуста</h3>
+          <h3>Корзина пуста</h3>
       }
     </div>
   );
-};
+}
 
 export default Cart;
