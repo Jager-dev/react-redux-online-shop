@@ -1,5 +1,7 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
+import {addToCart, decQuantity, delItem} from "../../redux/actions";
+import {Button, Table} from "react-bootstrap";
 
 const Cart = () => {
   const cart = useSelector(store => store.cart)
@@ -8,8 +10,8 @@ const Cart = () => {
   return (
     <div>
       {
-        cart.length ? <table className="table table-secondary">
-            <thead>
+        cart.length ? <Table responsive>
+            <thead className="thead">
             <th>Название продукта</th>
             <th>Количество</th>
             <th>Цена</th>
@@ -18,32 +20,32 @@ const Cart = () => {
             </thead>
             <tbody>
             {
-              cart.map(item =>
+              cart.map((item, idx) =>
                 <tr>
                   <td>{item.title}</td>
                   <td>
-                    <button onClick={() => dispatch({type: "DEC_ITEM_FROM_CART", payload: item})}>-</button>
+                    <Button variant="outline-warning" onClick={() => dispatch(decQuantity(idx))} className="me-2"> - </Button>
                     {item.quantity}
-                    <button onClick={() => dispatch({type: "ADD_TO_CART", payload: item})}>+</button>
+                    <Button variant="outline-primary" onClick={() => dispatch(addToCart(item))} className="ms-2"> + </Button>
                   </td>
                   <td>{item.price}</td>
-                  <td>{+item.total_price + +item.price}</td>
-                  <td>
-                    <button onClick={() => dispatch({type: "REMOVE_FROM_CART", payload: item.id})}>x</button>
-                  </td>
                   <td>{(item.price * item.quantity).toFixed(2)}</td>
+                    <td>
+                      <Button variant="danger" onClick={() => dispatch(delItem(item.id))}>Удалить</Button>
+                  </td>
                 </tr>
               )
             }
             </tbody>
-            <div>
+            <div>Итого:
               {
-                cart.map(el =>
-                <span onChange={() => dispatch({type: "ALL_CARTS_SUM", payload: el})}>{el.sum}</span>
-                )
+                cart.reduce((acc, item) => {
+                    return (item.price * item.quantity) + acc
+                  }, 0
+                ).toFixed(2)
               }
             </div>
-          </table> :
+          </Table> :
           <h3>Корзина пуста</h3>
       }
     </div>

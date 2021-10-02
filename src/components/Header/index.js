@@ -5,11 +5,10 @@ import {useSelector} from "react-redux";
 const Header = () => {
   const cart = useSelector(store => store.cart)
 
-
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">Navbar</a>
+        <a className="navbar-brand" href="#">Online Shop</a>
           <ul className="navbar-nav">
             <li className="nav-item">
               <Link className="nav-link" to="/">Home</Link>
